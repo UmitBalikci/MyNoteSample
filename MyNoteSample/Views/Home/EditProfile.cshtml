@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Profil Düzenle";
+}
+
+<div class="row mt-3">
+    <div class="col-sm-4 text-center">
+        <img src="https://picsum.photos/id/1005/256" alt="Profil Resmi" class="rounded-circle img-thumbnail" />
+        <div class="">
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" class="form-control-file" />
+                <p class="">Lütfen jpg, jpeg formatında dosya yükleyiniz..</p>
+                <div class="mt-2">
+                    <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-upload mr-2"></i>Yükle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-4 mt-3">
+        <form>
+            <div class="form-group">
+                <label for="fullname" class="font-weight-bold">Ad Soyad</label>
+                <input type="text" class="form-control" id="fullname">
+            </div>
+            <div class="form-group">
+                <label for="username" class="font-weight-bold">Kullanıcı Adı</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="email" class="font-weight-bold">Email Adresi</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="pass" class="font-weight-bold">Şifre</label>
+                <input type="password" class="form-control" id="pass">
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i>Kaydet</button>
+        </form>
+    </div>
+</div>

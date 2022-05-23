@@ -74,3 +74,8 @@ body {
     border: 0;
     background-color: rgba(255,0,0,0);
 }
+
+.loginbox {
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 15px #808080;
+}

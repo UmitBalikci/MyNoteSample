@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyNoteSample</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login"><i class="fa fa-sign-in mr-2"></i>Giriş</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register"><i class="fa fa-user mr-2"></i>Üye Ol</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register"><i class="fa fa-user mr-2"></i>Kayıt Ol</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="userinfo" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -110,14 +110,14 @@
 
     @await RenderSectionAsync("Carousel", required:false)
 
-    <div class="container mb-3">
+    <div class="container-fluid mb-3">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container small">
+        <div class="container-fluid small">
             Tüm hakları saklıdır. &copy; 2022 - MyNoteSample - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

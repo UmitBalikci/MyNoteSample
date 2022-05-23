@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Profil Kaldır";
+}
+
+<div class="row mt-3">
+    <div class="col-sm-4 text-center">
+        <img src="https://picsum.photos/id/1005/256" alt="Profil Resmi" class="rounded-circle img-thumbnail" />
+    </div>
+    <div class="col-sm-4 mt-3">
+        <h3 class="display-4">Ümit BALIKCI</h3>
+        <div class="mb-2">
+            <div><b>Kullanıcı Adı</b></div>
+            <div>umitbalikci</div>
+        </div>
+        <div class="mb-2">
+            <div><b>E-Posta Adresi</b></div>
+            <div>u.balikci.bm@gmail.com</div>
+        </div>
+        <div class="mb-3 mt-5">
+            <p class="text-danger"> Hesabınızı silmek istediğinizden emin misiniz?</p>
+            <form method="post" asp-action="DeleteProfile">
+                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Hesabı Kaldır</button>
+            </form>
+        </div>
+    </div>
+</div>

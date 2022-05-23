@@ -22,6 +22,26 @@ namespace MyNoteSample.Controllers
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult ShowProfile()
+        {
+            return View();
+        }
+        public IActionResult EditProfile()
+        {
+            return View();
+        }
+        public IActionResult DeleteProfile()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
