@@ -1,36 +1,47 @@
-﻿@{
+﻿@model RegisterViewModel
+@{
     ViewData["Title"] = "Kayıt Ol";
 }
 
 
 <div class="row mt-4">
-    <div class="col-sm-4 p-2">
-        <div class="p-2 loginbox">
+    <div class="col-sm-3 p-2">
+        <div class="p-2 loginbox ml-5">
             <h2 class="text-center mt-2">Kayıt Ol</h2>
+                <div class="text-danger small" asp-validation-summary="All">
+                    @*
+                        Property'ler harici bir hata mesajı meydana geldiğinde burada yer gösterilecek
+                        asp-validation-summary bu işe yarıyor.
+                    *@
+                </div>
             <form method="post">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="Kullanıcı Adı" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="Kullanıcı Adı" asp-for="Username">
+                    @*<span asp-validation-for="Username" class="text-danger small"></span>*@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-envelope"></i></span>
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     </div>
-                    <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon2">
+                    <input type="email" class="form-control" placeholder="E-mail" asp-for="Email">
+                    @*<span asp-validation-for="Email" class="text-danger small"></span>*@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa fa-key"></i></span>
+                        <span class="input-group-text"><i class="fa fa-key"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Şifre" aria-label="Şifre" aria-describedby="basic-addon3">
+                    <input type="password" class="form-control" placeholder="Şifre" asp-for="Password">
+                    @*<span asp-validation-for="Password" class="text-danger small"></span>*@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon4"><i class="fa fa-key"></i></span>
+                        <span class="input-group-text"><i class="fa fa-key"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Şifre Tekrar" aria-label="Şifre Tekrar" aria-describedby="basic-addon4">
+                    <input type="password" class="form-control" placeholder="Şifre Tekrar" asp-for="RePassword">
+                    @*<span asp-validation-for="RePassword" class="text-danger small"></span>*@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-success"><i class="fa fa-save mr-2"></i>Kayıt Ol</button>
@@ -38,7 +49,7 @@
             </form>
         </div>
     </div>
-    <div class="col-sm-8 p-2">
+    <div class="col-sm-7 offset-1 p-2">
         <div class="loginbox">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string username = Context.Session.GetString(Constants.UserName);
+    string role = Context.Session.GetString(Constants.UserRole);
+}
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
@@ -19,42 +23,50 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="manage" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-wrench mr-2"></i>İşlemler
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="manage">
-                                <a class="dropdown-item" asp-controller="Note" asp-action="Create">
-                                    <i class="fa fa-plus mr-2"></i>Yazı Ekle
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item" asp-controller="Note" asp-action="Index">
-                                    <i class="fa fa-th-list mr-2"></i>Yazılarım
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item" asp-controller="Note" asp-action="LikedList">
-                                    <i class="fa fa-star mr-2"></i>Beğendiklerim
-                                </a>
 
-                                <hr class="dropdown-divider">
+                        @if (string.IsNullOrEmpty(username) == false)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="manage" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-wrench mr-2"></i>İşlemler
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="manage">
+                                    <a class="dropdown-item" asp-controller="Note" asp-action="Create">
+                                        <i class="fa fa-plus mr-2"></i>Yazı Ekle
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item" asp-controller="Note" asp-action="Index">
+                                        <i class="fa fa-th-list mr-2"></i>Yazılarım
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item" asp-controller="Note" asp-action="LikedList">
+                                        <i class="fa fa-star mr-2"></i>Beğendiklerim
+                                    </a>
 
-                                <a class="dropdown-item" asp-controller="Category" asp-action="Create">
-                                    <i class="fa fa-plus mr-2"></i>Kategori Ekle
-                                </a>
-                                <a class="dropdown-item" asp-controller="Category" asp-action="Index">
-                                    <i class="fa fa-th-list mr-2"></i>Kategorileri Yönet
-                                </a>
+                                    @if (string.IsNullOrEmpty(role) == false && role == "admin")
+                                    {
+                                        <hr class="dropdown-divider">
 
-                                <hr class="dropdown-divider">
+                                        <a class="dropdown-item" asp-controller="Category" asp-action="Create">
+                                            <i class="fa fa-plus mr-2"></i>Kategori Ekle
+                                        </a>
+                                        <a class="dropdown-item" asp-controller="Category" asp-action="Index">
+                                            <i class="fa fa-th-list mr-2"></i>Kategorileri Yönet
+                                        </a>
 
-                                <a class="dropdown-item" asp-controller="User" asp-action="Create">
-                                    <i class="fa fa-plus mr-2"></i>Kullanıcı Ekle
-                                </a>
-                                <a class="dropdown-item" asp-controller="User" asp-action="Index">
-                                    <i class="fa fa-th-list mr-2"></i>Kullanıcıları Yönet
-                                </a>
-                            </div>
-                        </li>
+                                        <hr class="dropdown-divider">
+
+                                        <a class="dropdown-item" asp-controller="User" asp-action="Create">
+                                            <i class="fa fa-plus mr-2"></i>Kullanıcı Ekle
+                                        </a>
+                                        <a class="dropdown-item" asp-controller="User" asp-action="Index">
+                                            <i class="fa fa-th-list mr-2"></i>Kullanıcıları Yönet
+                                        </a>
+                                    }
+                                </div>
+                            </li>
+                        }
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="categories" role="button" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-th-list mr-2"></i>Kategoriler
@@ -74,34 +86,41 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login"><i class="fa fa-sign-in mr-2"></i>Giriş</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register"><i class="fa fa-user mr-2"></i>Kayıt Ol</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="userinfo" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user mr-2"></i>Ümit BALIKCI
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="userinfo">
-                                <a class="dropdown-item" asp-controller="Home" asp-action="ShowProfile">
-                                    <i class="fa fa-user mr-2"></i>Profili Göster
-                                </a>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
-                                    <i class="fa fa-user-edit mr-2"></i>Profili Düzenle
-                                </a>
-                                <hr class="dropdown-divider">
 
-                                <a class="dropdown-item" asp-controller="Home" asp-action="DeleteProfile">
-                                    <i class="fa fa-times text-danger mr-2"></i>Profili Sil
+                        @if (string.IsNullOrEmpty(username))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login"><i class="fa fa-sign-in mr-2"></i>Giriş</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register"><i class="fa fa-user mr-2"></i>Kayıt Ol</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item dropdown mr-5">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="userinfo" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-user mr-2"></i>@username
                                 </a>
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item" asp-controller="Home" asp-action="Logout">
-                                    <i class="fa fa-out mr-2"></i>Çıkış
-                                </a>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu" aria-labelledby="userinfo">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="ShowProfile">
+                                        <i class="fa fa-user mr-2"></i>Profili Göster
+                                    </a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
+                                        <i class="fa fa-user-edit mr-2"></i>Profili Düzenle
+                                    </a>
+                                    <hr class="dropdown-divider">
+
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="DeleteProfile">
+                                        <i class="fa fa-times text-danger mr-2"></i>Profili Sil
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Logout">
+                                        <i class="fa fa-out mr-2"></i>Çıkış
+                                    </a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

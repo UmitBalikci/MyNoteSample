@@ -22,6 +22,11 @@ namespace MyNoteSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.Name = "notes.session";
+                options.IdleTimeout = TimeSpan.FromSeconds(20);
+            });
             services.AddControllersWithViews();
         }
 
@@ -36,10 +41,10 @@ namespace MyNoteSample
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

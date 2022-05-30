@@ -128,19 +128,33 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @for (var i = 0; i < 10; i++)
-           {
+
             <div class="modal-body">
-                <div class="media">
-                    <img src="https://picsum.photos/id/1005/64" class="mr-3" alt="...">
+                @for (var i = 0; i < 10; i++)
+                {
+                    <div class="media">
+                        <img src="https://picsum.photos/id/1005/64" class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0">umitbalikci</h5>
+                            <p>Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels are crying from up above. Yeah, you take me to utopia.</p>
+                            <p class="small text-right text-muted"><i class="fa fa-clock mr-2"></i>21.05.2022 16:41</p>
+                        </div>
+                    </div>
+                }
+                <div class="media mt-4">
                     <div class="media-body">
-                        <h5 class="mt-0">umitbalikci</h5>
-                        <p>Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels are crying from up above. Yeah, you take me to utopia.</p>
-                        <p class="small text-right text-muted"><i class="fa fa-clock mr-2"></i>21.05.2022 16:41</p>
+                        <form method="post">
+                            <div class="input-group">
+                                <textarea rows="2" class="form-control" placeholder="yorumunuz.."></textarea>
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-send"></i>Gönder</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>   
-           }
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fa fa-times mr-2"></i>Kapat</button>
             </div>
