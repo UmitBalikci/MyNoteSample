@@ -21,7 +21,7 @@ namespace MyNoteSample.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _userService = new UserService(HttpContext);
+            _userService = new UserService();
         }
 
         public IActionResult Index()

@@ -18,7 +18,7 @@
                 asp-validation-summary bu işe yarıyor.
             *@
         </div>
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label asp-for="FullName" class="font-weight-bold"></label>
                 <input asp-for="FullName" class="form-control" />
@@ -36,12 +36,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="font-weight-bold"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger small"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RePassword" class="font-weight-bold"></label>
-                <input asp-for="RePassword" class="form-control" />
+                <input asp-for="RePassword" type="password" class="form-control" />
                 <span asp-validation-for="RePassword" class="text-danger small"></span>
             </div>
             <div class="form-group form-check">
