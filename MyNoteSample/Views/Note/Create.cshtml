@@ -1,4 +1,5 @@
-﻿@{
+﻿@model NoteViewModel
+@{
     ViewData["Title"] = "Yazı Oluştur";
 }
 
@@ -11,31 +12,28 @@
 
 <div class="row mb-4">
     <div class="col-4">
-        <form>
+        <form method="post">
             <div class="form-group">
-                <label for="category" class="font-weight-bold">Kategori</label>
-                <select id="category" class="form-control">
+                <label asp-for="CategoryId" class="font-weight-bold"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@(ViewBag.categories)">
                     <option selected>Seçiniz</option>
-                    <option value="1">Kategori 1</option>
-                    <option value="2">Kategori 2</option>
-                    <option value="3">Kategori 3</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="title" class="font-weight-bold">Başlık</label>
-                <input type="text" class="form-control" id="title">
+                <label asp-for="Title" class="font-weight-bold"></label>
+                <input asp-for="Title" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="summary" class="font-weight-bold">Özet</label>
-                <textarea rows="2" class="form-control" id="summary">@(TextData.GetSentences(2))</textarea>
+                <label asp-for="Summary" class="font-weight-bold"></label>
+                <textarea asp-for="Summary" rows="2" class="form-control">@(TextData.GetSentences(2))</textarea>
             </div>
             <div class="form-group">
-                <label for="detail" class="font-weight-bold">Detay</label>
-                <textarea rows="6" class="form-control" id="detail">@(TextData.GetSentences(6))</textarea>
+                <label asp-for="Detail" class="font-weight-bold"></label>
+                <textarea asp-for="Detail" rows="6" class="form-control">@(TextData.GetSentences(6))</textarea>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="isdraft">
-                <label for="isdraft" class="form-check-label">Taslak</label>
+                <input asp-for="IsDraft" type="checkbox" class="form-check-input" />
+                <label asp-for="IsDraft" class="form-check-label"></label>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-plus mr-2"></i>Oluştur</button>

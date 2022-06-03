@@ -74,8 +74,8 @@ namespace MyNoteSample.Migrations
                     Summary = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDraft = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    OwnerId1 = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedUser = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedUser = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -89,13 +89,13 @@ namespace MyNoteSample.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notes_Users_OwnerId1",
-                        column: x => x.OwnerId1,
+                        name: "FK_Notes_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,9 +181,9 @@ namespace MyNoteSample.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_OwnerId1",
+                name: "IX_Notes_UserId",
                 table: "Notes",
-                column: "OwnerId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

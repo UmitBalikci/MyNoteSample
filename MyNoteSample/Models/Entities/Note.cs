@@ -24,17 +24,17 @@ namespace MyNoteSample.Models.Entities
 
 
         [Display(Name ="Kategori")]
-        public int? CategoryId{ get; set; }
+        public int CategoryId{ get; set; }
 
-        [Display(Name = "Yazar"), NotMapped]
-        public int? OwnerId { get; set; }
+        [Display(Name = "Yazar")]
+        public int UserId { get; set; }
 
-        public virtual User Owner { get; set; }
+        public virtual User User { get; set; }
         public virtual Category Category { get; set; }
 
         public virtual List<Comment> Comments{ get; set; }
-        [NotMapped]
-        public virtual List<User> LikedUsers { get; set; }
+        //[NotMapped]
+        //public virtual List<User> LikedUsers { get; set; }
         public virtual List<LikedNotes> Likes { get; set; }
     }
 }

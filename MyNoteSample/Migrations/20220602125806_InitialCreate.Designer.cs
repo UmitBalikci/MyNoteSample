@@ -10,7 +10,7 @@ using MyNoteSample.Models.Context;
 namespace MyNoteSample.Migrations
 {
     [DbContext(typeof(MyNoteDbContext))]
-    [Migration("20220525195116_InitialCreate")]
+    [Migration("20220602125806_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,7 +160,7 @@ namespace MyNoteSample.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -184,9 +184,6 @@ namespace MyNoteSample.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("OwnerId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Summary")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -197,11 +194,14 @@ namespace MyNoteSample.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("OwnerId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Notes");
                 });
@@ -292,15 +292,19 @@ namespace MyNoteSample.Migrations
                 {
                     b.HasOne("MyNoteSample.Models.Entities.Category", "Category")
                         .WithMany("Notes")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("MyNoteSample.Models.Entities.User", "Owner")
+                    b.HasOne("MyNoteSample.Models.Entities.User", "User")
                         .WithMany("LikedNotes")
-                        .HasForeignKey("OwnerId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("Owner");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyNoteSample.Models.Entities.Category", b =>

@@ -28,7 +28,7 @@ namespace MyNoteSample.Models.Entities
         [Display(Name = "Yönetici")]
         public bool IsAdmin { get; set; }
 
-        // public virtual List<Note> Notes { get; set; } 
+        //public virtual List<Note> Notes { get; set; } 
         public virtual List<Note> LikedNotes { get; set; } 
     }
 }

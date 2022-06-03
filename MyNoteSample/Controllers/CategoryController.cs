@@ -17,9 +17,15 @@ namespace MyNoteSample.Controllers
         {
             return View(_categoryService.List().Data);
         }
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            ServiceResult<Category> result = _categoryService.Find(id);
+
+            if (result.Data == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(result.Data);
         }
         public IActionResult Create()
         {
@@ -45,13 +51,70 @@ namespace MyNoteSample.Controllers
             }
             return View(model);
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            ServiceResult<Category> result = _categoryService.Find(id);
+
+            if (result.Data == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            CategoryViewModel model = new CategoryViewModel
+            {
+                Name = result.Data.Name,
+                Description = result.Data.Description
+            };
+            return View(model);
         }
-        public IActionResult Delete()
+        [HttpPost]
+        public IActionResult Edit(int id, CategoryViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                ServiceResult<Category> result = _categoryService.Update(id, model, HttpContext);
+                if (!result.IsError)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (string error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+                }
+            }
+            return View(model);
+        }
+        public IActionResult Delete(int id)
+        {
+            ServiceResult<Category> result = _categoryService.Find(id);
+
+            if (result.Data == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(result.Data);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirm(int id)
+        {
+            ServiceResult<object> result = _categoryService.Remove(id);
+            if (!result.IsError)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (string error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                }
+
+                return View(_categoryService.Find(id).Data);
+            }
         }
     }
 }

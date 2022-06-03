@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CategoryViewModel
+@{
     ViewData["Title"] = "Kategori Güncelle";
 }
 
@@ -10,14 +11,22 @@
 
 <div class="row mb-4">
     <div class="col-4">
-        <form>
+        <div class="text-danger small" asp-validation-summary="ModelOnly">
+            @*
+                Property'ler harici bir hata mesajı meydana geldiğinde burada yer gösterilecek
+                asp-validation-summary bu işe yarıyor.
+            *@
+        </div>
+        <form method="post">
             <div class="form-group">
-                <label for="categoryname" class="font-weight-bold">Kategori Adı</label>
-                <input type="text" class="form-control" id="categoryname" value="@NameData.GetCompanyName()">
+                <label asp-for="Name" class="font-weight-bold"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
             </div>
             <div class="form-group">
-                <label for="CategoryDesc" class="font-weight-bold">Kategori Açıklaması</label>
-                <textarea cols="3" class="form-control" id="CategoryDesc">@TextData.GetSentence()</textarea>
+                <label asp-for="Description" class="font-weight-bold"></label>
+                <textarea asp-for="Description" rows="2" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger small"></span>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2"></i>Kaydet</button>
             <a class="btn btn-secondary btn-sm" asp-action="Index"><i class="fa fa-arrow-left mr-2"></i>Listeye Dön</a>
