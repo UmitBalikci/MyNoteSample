@@ -25,7 +25,7 @@ namespace MyNoteSample
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.Cookie.Name = "notes.session";
-                options.IdleTimeout = TimeSpan.FromSeconds(20);
+                options.IdleTimeout = TimeSpan.FromSeconds(200);
             });
             services.AddControllersWithViews();
         }
